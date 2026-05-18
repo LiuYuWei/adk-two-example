@@ -1,0 +1,13 @@
+# Secrets — never commit. Only .env.example (template) is tracked.
+.env
+**/.env
+# Docs are kept local / out of the public repo by request.
+docs/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+.adk/
+*.db

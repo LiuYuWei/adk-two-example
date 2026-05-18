@@ -1,0 +1,23 @@
+{
+  "protocolVersion": "0.3.0",
+  "name": "smart_brief",
+  "description": "An ADK 2.0 graph Workflow that turns a topic into an executive brief: parallel research (angles + facts), fan-in, draft, and an LLM quality-gate loop.",
+  "url": "http://localhost:8000/a2a/smart_brief",
+  "version": "0.1.0",
+  "preferredTransport": "JSONRPC",
+  "capabilities": { "streaming": true },
+  "defaultInputModes": ["text/plain"],
+  "defaultOutputModes": ["text/plain"],
+  "skills": [
+    {
+      "id": "write_brief",
+      "name": "Write an executive brief",
+      "description": "Given a topic, research it in parallel, draft a ~150-word brief, and self-review until it passes a quality gate.",
+      "tags": ["research", "writing", "summarization"],
+      "examples": [
+        "the economics of home solar",
+        "居家太陽能的經濟效益"
+      ]
+    }
+  ]
+}

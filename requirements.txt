@@ -1,0 +1,9 @@
+# ADK 2.0 is a pre-release. It is NOT pulled by a bare `pip install google-adk`.
+# The version pin + the `--pre` flag in the Makefile/Dockerfile are what
+# select the 2.0 line. 2.0.0b1 was the latest 2.0 beta at time of writing.
+# The [a2a] extra adds the Agent-to-Agent protocol SDK (RemoteA2aAgent,
+# `--a2a` server endpoint). Without it, A2A imports raise ModuleNotFoundError.
+google-adk[a2a]>=2.0.0b1,<3.0.0
+
+# Used by the structural offline tests.
+pytest>=8.0.0

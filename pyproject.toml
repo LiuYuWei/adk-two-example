@@ -1,0 +1,16 @@
+[project]
+name = "adk-two-example"
+version = "0.1.0"
+description = "A runnable ADK 2.0 graph-Workflow example (Docker + Makefile)."
+requires-python = ">=3.10"
+dependencies = [
+    # [a2a] extra = Agent-to-Agent protocol support (RemoteA2aAgent, --a2a).
+    "google-adk[a2a]>=2.0.0b1,<3.0.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0.0"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

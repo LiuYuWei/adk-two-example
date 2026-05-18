@@ -1,0 +1,13 @@
+services:
+  adk:
+    build: .
+    image: adk-two-example:latest
+    ports:
+      - "8000:8000"
+    # Auth + model config come from your local .env (see .env.example).
+    env_file:
+      - .env
+    # Hot-reload the agent code without rebuilding the image.
+    volumes:
+      - ./app:/srv/app
+    restart: unless-stopped
