@@ -9,9 +9,8 @@ explicit edge graph, parallel fan-out / fan-in, function nodes, shared state,
 and an LLM quality-gate **loop**.
 
 > ⚠️ ADK 2.0 is a **Beta / pre-release**. It is installed with `pip --pre`,
-> not by a plain `pip install google-adk`. See
-> [`docs/adk-1.0-vs-2.0.md`](docs/adk-1.0-vs-2.0.md) for the full 1.x vs 2.0
-> comparison and migration notes.
+> not by a plain `pip install google-adk`. Do not use it in production:
+> the session/event schema is not compatible with ADK 1.x.
 
 ## The workflow
 
@@ -80,12 +79,17 @@ Get an AI Studio key at <https://aistudio.google.com/apikey>.
 .
 ├── app/
 │   ├── __init__.py
-│   └── smart_brief/
-│       ├── __init__.py      # `from . import agent` (ADK discovery contract)
-│       └── agent.py         # `root_agent = Workflow(...)`
-├── tests/test_workflow.py   # offline graph-structure tests
-├── docs/adk-1.0-vs-2.0.md   # 1.x vs 2.0 comparison + migration
-├── Dockerfile               # installs ADK 2.0 with `pip --pre`
+│   ├── smart_brief/
+│   │   ├── __init__.py      # `from . import agent` (ADK discovery contract)
+│   │   ├── agent.py         # `root_agent = Workflow(...)`
+│   │   └── agent.json       # A2A agent card (exposed with --a2a)
+│   └── a2a_consumer/
+│       ├── __init__.py
+│       └── agent.py         # RemoteA2aAgent as a Workflow node
+├── tests/
+│   ├── test_workflow.py     # offline graph-structure tests
+│   └── test_a2a_consumer.py # offline A2A wiring tests
+├── Dockerfile               # installs ADK 2.0 (+a2a) with `pip --pre`
 ├── docker-compose.yml
 ├── Makefile
 ├── requirements.txt / pyproject.toml
@@ -116,7 +120,6 @@ make a2a-card       # print smart_brief's served A2A card
 - In the dev UI pick **`a2a_consumer`** to see a loopback A2A call.
 
 Requires the `google-adk[a2a]` extra (already in `requirements.txt`).
-Full write-up: [`docs/a2a.md`](docs/a2a.md).
 
 ## Notes & caveats
 
